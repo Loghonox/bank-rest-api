@@ -27,6 +27,10 @@ public class Client {
     @OneToMany(fetch = FetchType.LAZY)
     private List<ClientAccount> lstClientAccount;
 
+    @JoinColumn(name = "loan_id", nullable = false)
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Loan> lstLoan;
+
     public void setClientId(Long clientId) {
         this.clientId = clientId;
     }
