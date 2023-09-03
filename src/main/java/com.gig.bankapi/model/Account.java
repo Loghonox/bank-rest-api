@@ -3,6 +3,7 @@ package com.gig.bankapi.model;
 import jakarta.validation.constraints.Size;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -10,10 +11,11 @@ import javax.persistence.*;
 
 public class Account {
     @Id
-    private Long account_id;
+    @Column(name = "account_id")
+    private Long accountId;
 
-    @Column(nullable = false)
-    private String account_name;
+    @Column(nullable = false,name="account_name")
+    private String accountName;
 
     @Column(nullable = false)
     @Size(max = 31) //TODO test if there's a min
@@ -25,17 +27,19 @@ public class Account {
     @Column(nullable = false)
     private String currency;
 
+
     @JoinColumn(name = "account_id", nullable = false)
-    @OneToOne(fetch = FetchType.LAZY)
-    private Client client;
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<AccountTransaction> lstAccountTransaction;
 
 
-    public void setAccount_id(Long id) {
-        this.account_id = id;
+
+    public void setAccountId(Long id) {
+        this.accountId = id;
     }
 
-    public Long getAccount_id() {
-        return account_id;
+    public Long getAccountId() {
+        return accountId;
     }
 
     public String getIban() {
@@ -46,12 +50,12 @@ public class Account {
         this.iban = iban;
     }
 
-    public String getAccount_name() {
-        return account_name;
+    public String getAccountName() {
+        return accountName;
     }
 
-    public void setAccount_name(String account_name) {
-        this.account_name = account_name;
+    public void setAccountName(String account_name) {
+        this.accountName = account_name;
     }
 
     public Long getBalance() {

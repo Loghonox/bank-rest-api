@@ -1,6 +1,7 @@
 package com.gig.bankapi.model;
 
 
+import javax.naming.Name;
 import javax.persistence.*;
 import java.util.List;
 
@@ -9,7 +10,8 @@ import java.util.List;
 public class Client {
 
     @Id
-    private Long client_id;
+    @Column(name ="client_id")
+    private Long clientId;
 
     @Column(nullable = false,name="first_name")
     private String firstName;
@@ -21,15 +23,15 @@ public class Client {
     @Column(nullable = false,name="birth_date")
     private String birthDate;
 
-    @JoinColumn(name = "account_id", nullable = false)
+    @JoinColumn(name = "client_id", nullable = false)
     @OneToMany(fetch = FetchType.LAZY)
-    private List<Account> lstAccount;
+    private List<ClientAccount> lstClientAccount;
 
-    public void setClient_id(Long clientId) {
-        this.client_id = clientId;
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
     }
 
-    public Long getClient_id() {
-        return client_id;
+    public Long getClientId() {
+        return clientId;
     }
 }
