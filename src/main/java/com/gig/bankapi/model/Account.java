@@ -1,6 +1,6 @@
 package com.gig.bankapi.model;
 
-import jakarta.validation.constraints.Size;
+//import jakarta.validation.constraints.Size;
 
 import javax.persistence.*;
 import java.util.List;
@@ -8,7 +8,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "account")
-
 public class Account {
     @Id
     @Column(name = "account_id")
@@ -18,7 +17,7 @@ public class Account {
     private String accountName;
 
     @Column(nullable = false)
-    @Size(max = 31) //TODO test if there's a min
+   // @Size(max = 31) //TODO test if there's a min
     private String iban;
 
     @Column(nullable = false)

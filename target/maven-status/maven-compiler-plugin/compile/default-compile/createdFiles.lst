@@ -1,10 +1,14 @@
+com\gig\bankapi\controller\AccountController.class
+com\gig\bankapi\repository\ClientRepo.class
+com\gig\bankapi\service\account\AccountService.class
+com\gig\bankapi\BankRestApiMain.class
 com\gig\bankapi\model\ClientAccount.class
+com\gig\bankapi\model\Account.class
+com\gig\bankapi\model\Loan.class
 com\gig\bankapi\model\Transaction.class
 com\gig\bankapi\model\AccountTransaction.class
-com\gig\bankapi\model\Account.class
 com\gig\bankapi\model\Client.class
+com\gig\bankapi\service\account\AccountServiceInterface.class
 com\gig\bankapi\model\Bank.class
-com\gig\bankapi\service\AccountServiceInterface.class
 com\gig\bankapi\repository\AccountRepo.class
 com\gig\bankapi\model\BankClient.class
-com\gig\bankapi\model\Loan.class
