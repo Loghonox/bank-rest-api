@@ -1,21 +1,21 @@
 package com.gig.bankaccountrestapi.model;
 
-//import jakarta.validation.constraints.Size;
-
-
-
 import jakarta.persistence.*;
-import org.hibernate.annotations.GenericGenerator;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 
 @Entity
 @Table(name = "account")
+@EnableAutoConfiguration
 public class Account implements Serializable {
     @Id
     @Column(name = "account_id", updatable = false, nullable = false)
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long accountId;
 
     @Column(nullable = false, name = "account_name")
@@ -30,6 +30,12 @@ public class Account implements Serializable {
 
     @Column(nullable = false)
     private String currency;
+
+    @JoinColumn(name = "account_id")
+    @OneToMany
+    private List<AccountTransaction> lstAccountTransaction;
+
+
 /*
     @JoinColumn(name = "account_id", nullable = false)
     @OneToMany(fetch = FetchType.LAZY)
@@ -38,11 +44,12 @@ public class Account implements Serializable {
 */
 
 
-    public Account( String accountName, String iban, Long balance, String currency) {
+    public Account(String accountName, String iban, Long balance, String currency) {
         this.accountName = accountName;
         this.iban = iban;
         this.balance = balance;
         this.currency = currency;
+        this.lstAccountTransaction = new ArrayList<>();
     }
 
     public Account() {
@@ -83,4 +90,28 @@ public class Account implements Serializable {
     public void setAccountId(Long accountId) {
         this.accountId = accountId;
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(accountName, iban, balance, currency);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Account other = (Account) obj;
+        return Objects.equals(accountName, other.accountName)
+                && Objects.equals(iban, other.iban)
+                && Objects.equals(balance, other.balance)
+                && Objects.equals(currency, other.currency);
+    }
+
 }

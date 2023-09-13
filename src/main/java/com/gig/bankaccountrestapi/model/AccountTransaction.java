@@ -1,8 +1,7 @@
-/*package com.gig.bankapi.model;
+package com.gig.bankaccountrestapi.model;
 
+import jakarta.persistence.*;
 
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
@@ -12,47 +11,40 @@ import java.util.Objects;
 @Table(name = "account_transaction")
 public class AccountTransaction  implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="account_id")
-    private Long accountId;
+
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="transaction_id")
-    private Long transactionId;
+    @Column(name="account_transaction_id")
+    private Long accountTransactionId;
+
+    @OneToMany
+    @JoinColumn(name="transaction_id")
+    private List<Transaction> lstTransactionId;
+
+
+    @JoinColumn(name = "account_id")
+    @ManyToOne(optional = false)
+    private Account accountId;
 
 
 
-
-
-
-    public Long getAccountId() {
+    public Account getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(Long accountId) {
+    public void setAccountId(Account account) {
         this.accountId = accountId;
     }
 
     public Long getTransactionId() {
-        return transactionId;
+        return accountTransactionId;
     }
 
-    public void setTransactionId(Long transactionId) {
-        this.transactionId = transactionId;
-    }
 
-   public List<Transaction> getTransaction() {
-        return transaction;
-    }
-
-    public void setTransaction(List<Transaction> transaction) {
-        this.transaction = transaction;
-    }
 
     @Override
     public int hashCode() {
-        return Objects.hash(accountId, transactionId);
+        return Objects.hash(accountId, accountTransactionId,lstTransactionId);
     }
 
     @Override
@@ -68,8 +60,10 @@ public class AccountTransaction  implements Serializable {
         }
         AccountTransaction other = (AccountTransaction) obj;
         return Objects.equals(accountId, other.accountId)
-                && Objects.equals(transactionId, other.transactionId);
+                && Objects.equals(accountTransactionId, other.accountTransactionId)
+                && Objects.equals(lstTransactionId, other.lstTransactionId)
+
+                ;
     }
 
 }
- */

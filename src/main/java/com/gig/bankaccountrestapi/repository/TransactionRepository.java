@@ -1,8 +1,8 @@
 package com.gig.bankaccountrestapi.repository;
 
-import com.gig.bankaccountrestapi.model.Account;
+import com.gig.bankaccountrestapi.model.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AccountRepository extends JpaRepository<Account, Long> {
+public interface TransactionRepository extends JpaRepository<Transaction, Long> {
 
 }

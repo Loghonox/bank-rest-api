@@ -1,16 +1,20 @@
-/*package com.gig.bankapi.model;
+package com.gig.bankaccountrestapi.model;
 
+import jakarta.persistence.*;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
-import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "transaction")
-public class Transaction {
+@EnableAutoConfiguration
+public class Transaction implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "transaction_id")
+    @Column(name = "transaction_id", updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long transactionId;
 
     @Column(name = "ammount")
@@ -19,11 +23,14 @@ public class Transaction {
     @Column(name = "asofdate")
     private LocalDateTime asofdate;
 
+    @JoinColumn(name = "account_transaction_id")
+    @ManyToOne(optional = false)
+    private AccountTransaction account_transaction_id;
 
 
-    public void makeTransaction(Long ammount,LocalDateTime asofdate){
-        this.ammount= ammount;
-        this.asofdate=asofdate;
+    public void makeTransaction(Long ammount, LocalDateTime asofdate) {
+        this.ammount = ammount;
+        this.asofdate = asofdate;
     }
 
     public Long getTransactionId() {
@@ -38,5 +45,27 @@ public class Transaction {
         return asofdate;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(transactionId, ammount, asofdate, account_transaction_id);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Transaction other = (Transaction) obj;
+        return Objects.equals(transactionId, other.transactionId)
+                && Objects.equals(ammount, other.ammount)
+                && Objects.equals(asofdate, other.asofdate)
+                && Objects.equals(account_transaction_id, other.account_transaction_id);
+    }
+
 }
-*/

@@ -1,19 +1,19 @@
 version: "3.8"
 services:
-  bank-account:
+  bank-account-rest:
     image: gig/bank-rest-api:1.0.0
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: bank-account
+    container_name: bank-account-rest
     restart: on-failure
     ports:
       - 8081:8080
     environment:
       SPRING_APPLICATION_JSON: '{
-        "spring.datasource.url" : "jdbc:mysql://mysqldb:3306/bank_account_gig?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&autoReconnect=true",
+        "spring.datasource.url" : "jdbc:mysql://mysqldb:3306/bank_account?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&autoReconnect=true",
         "spring.datasource.username" : "root",
-        "spring.datasource.password" : "root",
+        "spring.datasource.password" : "gig",
         "spring.datasource.driver-class-name" : "com.mysql.cj.jdbc.Driver",
         "spring.jpa.generate-ddl":"true",
         "spring.jpa.hibernate.ddl-auto" : "create",
@@ -38,7 +38,7 @@ services:
       - bank-account-net
     environment:
       - MYSQL_ROOT_PASSWORD=gig
-      - MYSQL_DATABASE=bank_account_gig
+      - MYSQL_DATABASE=bank_account
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 10s
