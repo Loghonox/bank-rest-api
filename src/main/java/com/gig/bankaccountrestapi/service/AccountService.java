@@ -38,7 +38,6 @@ public class AccountService implements AccountServiceInterface {
     public Account createAccount(Account account) throws Exception {
         Account newAccount;
         try {
-            System.out.println("Aquiiiiiiiiiii"+account.getAccountName());
             newAccount = accountRepository.save(account);
         } catch (Exception e) {
             throw new Exception("couldn't create account from:" + account.getIban()+e.getMessage());

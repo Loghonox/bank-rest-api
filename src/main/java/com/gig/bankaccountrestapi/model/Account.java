@@ -40,9 +40,6 @@ public class Account implements Serializable {
         this.currency = currency;
     }
 
-    public Account() {
-
-    }
 
     public void updateAccount(String accountName, String iban, Long balance, String currency) {
         this.accountName = accountName;

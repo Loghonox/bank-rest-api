@@ -20,6 +20,18 @@ public class Client {
     private String firstName;
 
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
+    }
+
     @Column(nullable = false, name = "last_name")
     private String lastName;
 
@@ -27,18 +39,18 @@ public class Client {
     private String birthDate;
 
 
-
-    @JoinColumn(name = "loan_id")
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Loan> lstLoan;
-
-    public Client(Long clientId, String firstName, String lastName, String birthDate) {
-        this.clientId = clientId;
+    public Client( String firstName, String lastName, String birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
     }
 
+
+    public void upcateClient(String firstName, String lastName, String birthDate) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+    }
 
 
     public void setClientId(Long clientId) {
