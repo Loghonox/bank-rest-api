@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,19 +15,19 @@ public class ClientAccount implements Serializable {
     @Column(name = "client_account_id")
     private Long clientAccountId;
 
-    @JoinColumn(name = "account_id")
-    @OneToMany
-    private List<Account> lstAccount;
+    @JoinColumn(name = "account_id",insertable=false, updatable=false)
+    @ManyToOne
+    private Account account;
 
     @JoinColumn(name = "client_id")
     @ManyToOne(optional = false)
-    private Client clientId;
+    private Client client;
 
 
 
     @Override
     public int hashCode() {
-        return Objects.hash(clientAccountId, lstAccount,clientId);
+        return Objects.hash(clientAccountId, account, client);
     }
 
     @Override
@@ -44,8 +43,8 @@ public class ClientAccount implements Serializable {
         }
         ClientAccount other = (ClientAccount) obj;
         return Objects.equals(clientAccountId, other.clientAccountId)
-                && Objects.equals(lstAccount, other.lstAccount)
-                && Objects.equals(clientId, other.clientId)
+                && Objects.equals(account, other.account)
+                && Objects.equals(client, other.client)
                 ;
     }
 

@@ -36,12 +36,12 @@ public class Account implements Serializable {
     private List<AccountTransaction> lstAccountTransaction;
 
 
-/*
-    @JoinColumn(name = "account_id", nullable = false)
+
+    @JoinColumn(name = "account_id")
     @OneToMany(fetch = FetchType.LAZY)
     private List<ClientAccount> lstAccount;
 
-*/
+
 
 
     public Account(String accountName, String iban, Long balance, String currency) {
