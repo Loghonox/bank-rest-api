@@ -24,14 +24,10 @@ public class Bank implements Serializable {
     //@Size(min = 8, max = 11)
     private Long swiftCode;
 
-    @JoinColumn(name = "bank_client_id")
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<BankClient> lstBankClient;
-
 
     @Override
     public int hashCode() {
-        return Objects.hash(bankId, bankName, swiftCode, lstBankClient);
+        return Objects.hash(bankId, bankName, swiftCode);
     }
 
     @Override
@@ -48,8 +44,7 @@ public class Bank implements Serializable {
         Bank other = (Bank) obj;
         return Objects.equals(bankId, other.bankId)
                 && Objects.equals(bankName, other.bankName)
-                && Objects.equals(swiftCode, other.swiftCode)
-                && Objects.equals(lstBankClient, other.lstBankClient);
+                && Objects.equals(swiftCode, other.swiftCode);
     }
 
 }

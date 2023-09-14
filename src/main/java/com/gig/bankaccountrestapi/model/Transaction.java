@@ -23,10 +23,6 @@ public class Transaction implements Serializable {
     @Column(name = "asofdate")
     private LocalDateTime asofdate;
 
-    @JoinColumn(name = "account_transaction_id")
-    @ManyToOne(optional = false)
-    private AccountTransaction account_transaction_id;
-
 
     public void makeTransaction(Long ammount, LocalDateTime asofdate) {
         this.ammount = ammount;
@@ -47,7 +43,7 @@ public class Transaction implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(transactionId, ammount, asofdate, account_transaction_id);
+        return Objects.hash(transactionId, ammount, asofdate);
     }
 
     @Override
@@ -64,8 +60,7 @@ public class Transaction implements Serializable {
         Transaction other = (Transaction) obj;
         return Objects.equals(transactionId, other.transactionId)
                 && Objects.equals(ammount, other.ammount)
-                && Objects.equals(asofdate, other.asofdate)
-                && Objects.equals(account_transaction_id, other.account_transaction_id);
+                && Objects.equals(asofdate, other.asofdate);
     }
 
 }

@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @Tag(name = "account")
@@ -21,6 +23,12 @@ public class AccountController implements AccountControllerInterface {
     public ResponseEntity<Account> createAccount(Account newAccount) throws Exception {
         return ResponseEntity.status(HttpStatus.CREATED).body(accountService.createAccount(newAccount));
 
+
+    }
+
+    @Override
+    public ResponseEntity<List<Account>> getAll() throws Exception {
+        return ResponseEntity.status(HttpStatus.OK).body(accountService.getAll());
 
     }
 

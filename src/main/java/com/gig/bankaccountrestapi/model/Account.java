@@ -31,17 +31,6 @@ public class Account implements Serializable {
     @Column(nullable = false)
     private String currency;
 
-    @JoinColumn(name = "account_id")
-    @OneToMany
-    private List<AccountTransaction> lstAccountTransaction;
-
-
-
-    @JoinColumn(name = "account_id")
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<ClientAccount> lstAccount;
-
-
 
 
     public Account(String accountName, String iban, Long balance, String currency) {
@@ -49,7 +38,6 @@ public class Account implements Serializable {
         this.iban = iban;
         this.balance = balance;
         this.currency = currency;
-        this.lstAccountTransaction = new ArrayList<>();
     }
 
     public Account() {

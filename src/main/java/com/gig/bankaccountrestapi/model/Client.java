@@ -27,11 +27,6 @@ public class Client {
     private String birthDate;
 
 
-    @JoinColumn(name = "client_account_id")
-    @OneToMany
-    private List<ClientAccount> lstClientAccount;
-
-
 
     @JoinColumn(name = "loan_id")
     @OneToMany(fetch = FetchType.LAZY)

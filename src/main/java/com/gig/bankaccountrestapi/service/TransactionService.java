@@ -1,8 +1,6 @@
 package com.gig.bankaccountrestapi.service;
 
-import com.gig.bankaccountrestapi.model.Account;
 import com.gig.bankaccountrestapi.model.Transaction;
-import com.gig.bankaccountrestapi.repository.AccountRepository;
 import com.gig.bankaccountrestapi.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
