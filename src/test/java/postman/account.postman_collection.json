@@ -1,0 +1,149 @@
+{
+	"info": {
+		"_postman_id": "127f22b6-fc81-4c0e-85e9-5ad42be0d77a",
+		"name": "account",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29631108"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8081/account/make_transaction/1",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accountId",
+						"value": "1",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "ammount",
+						"value": "1",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"ammount\":\"1\",\"asofdate\":\"2020-12-31T15:53:16\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/account/make_transaction/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"account",
+						"make_transaction",
+						"1"
+					],
+					"query": [
+						{
+							"key": "accountId",
+							"value": "\"1\"",
+							"disabled": true
+						},
+						{
+							"key": "ammount",
+							"value": "\"1\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8081/account/1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "id",
+						"value": "2",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"accountId\",\"1\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8081/account/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"account",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8081/account",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"accountName\":\"jose\",\r\n    \"iban\":\"1223\",\r\n    \"balance\":2,\r\n\"currency\":\"EUR\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/account",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"account"
+					],
+					"query": [
+						{
+							"key": "accountName",
+							"value": "\"Jose\"",
+							"disabled": true
+						},
+						{
+							"key": "iban",
+							"value": "\"1awdqd\"",
+							"disabled": true
+						},
+						{
+							"key": "balance",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "currency",
+							"value": "\"ewue\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
