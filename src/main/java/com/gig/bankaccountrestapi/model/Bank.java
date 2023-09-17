@@ -1,16 +1,15 @@
 package com.gig.bankaccountrestapi.model;
 
-//import jakarta.validation.constraints.Size;
-
 
 import jakarta.persistence.*;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "bank")
+@EnableAutoConfiguration
 public class Bank implements Serializable {
 
     @Id

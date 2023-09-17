@@ -25,6 +25,7 @@ public class TransactionController implements TransactionControllerInterface {
         return ResponseEntity.status(HttpStatus.CREATED).body(transactionService.addTransaction(newTransaction));
     }
 
+
     @Override
     public ResponseEntity<Transaction> getAccountById(Long transactionId) throws Exception {
         return ResponseEntity.status(HttpStatus.OK).body(transactionService.getTransactionById(transactionId));

@@ -29,6 +29,8 @@ public interface TransactionControllerInterface {
     @Operation(summary = "Add new Transaction")
     ResponseEntity<Transaction> addTransaction(@RequestBody Transaction newTransaction) throws Exception;
 
+
+
     @GetMapping("/{id}")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Find an transaction by id",

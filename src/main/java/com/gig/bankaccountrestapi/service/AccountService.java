@@ -2,7 +2,9 @@ package com.gig.bankaccountrestapi.service;
 
 
 import com.gig.bankaccountrestapi.model.Account;
+import com.gig.bankaccountrestapi.model.Transaction;
 import com.gig.bankaccountrestapi.repository.AccountRepository;
+import com.gig.bankaccountrestapi.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,8 @@ public class AccountService implements AccountServiceInterface {
     AccountRepository accountRepository;
 
 
+    @Autowired
+    TransactionRepository transactionRepository;
 
     @Override
     public List<Account> getAll() {
@@ -40,7 +44,7 @@ public class AccountService implements AccountServiceInterface {
         try {
             newAccount = accountRepository.save(account);
         } catch (Exception e) {
-            throw new Exception("couldn't create account from:" + account.getIban()+e.getMessage());
+            throw new Exception("couldn't create account from:" + account.getIban() + e.getMessage());
         }
         return newAccount;
     }
@@ -65,6 +69,26 @@ public class AccountService implements AccountServiceInterface {
         } catch (Exception e) {
             throw new Exception("error occurred while deleting Account" + accountRepository.findById(id).get().getIban());
 
+        }
+    }
+
+    @Override
+    public void withdrawMoneyTransaction(Long accountId, Transaction transaction) throws Exception {
+
+        Account account = accountRepository.findById(accountId).get();
+        try {
+            transactionRepository.save(transaction);
+            Long newBalance = account.getBalance()-transaction.getAmmount();
+
+            if (newBalance < 0) {
+                throw new Exception("Insufficient money from:" + account.getIban());
+            }
+            System.out.println("accountId"+accountId+"-->"+transaction.getAmmount());
+            System.out.println(newBalance);
+            account.updateAccount(account.getAccountName(), account.getIban(), newBalance, account.getCurrency());
+            accountRepository.save(account);
+        } catch (Exception e) {
+            throw new Exception("couldn't submit transaction from:" + account.getIban());
         }
     }
 }

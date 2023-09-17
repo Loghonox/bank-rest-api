@@ -1,10 +1,14 @@
 package com.gig.bankaccountrestapi.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -17,16 +21,21 @@ public class Transaction implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long transactionId;
 
-    @Column(name = "ammount")
+    @Column(name = "ammount", nullable = false)
     private Long ammount;
 
     @Column(name = "asofdate")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss[.SSS][.SS][.S]")
     private LocalDateTime asofdate;
 
 
-    public void makeTransaction(Long ammount, LocalDateTime asofdate) {
+    public Transaction(Long ammount, LocalDateTime asofdate) {
         this.ammount = ammount;
         this.asofdate = asofdate;
+    }
+
+    public Transaction() {
+
     }
 
     public Long getTransactionId() {

@@ -1,6 +1,7 @@
 package com.gig.bankaccountrestapi.model;
 
 import jakarta.persistence.*;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -8,6 +9,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "loan")
+@EnableAutoConfiguration
 public class Loan implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

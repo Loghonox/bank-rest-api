@@ -31,13 +31,18 @@ public class Account implements Serializable {
     @Column(nullable = false)
     private String currency;
 
-
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Transaction> lsttransactions = new ArrayList<>();
 
     public Account(String accountName, String iban, Long balance, String currency) {
         this.accountName = accountName;
         this.iban = iban;
         this.balance = balance;
         this.currency = currency;
+    }
+
+    public Account() {
+
     }
 
 
@@ -47,6 +52,7 @@ public class Account implements Serializable {
         this.balance = balance;
         this.currency = currency;
     }
+
 
 
     public Long getAccountId() {

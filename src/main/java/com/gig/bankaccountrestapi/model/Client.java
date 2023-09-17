@@ -2,6 +2,7 @@ package com.gig.bankaccountrestapi.model;
 
 
 import jakarta.persistence.*;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import java.util.List;
 import java.util.Objects;
@@ -9,6 +10,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "client")
+@EnableAutoConfiguration
 public class Client {
 
     @Id

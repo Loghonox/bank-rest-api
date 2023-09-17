@@ -1,6 +1,7 @@
 package com.gig.bankaccountrestapi.controller;
 
 import com.gig.bankaccountrestapi.model.Account;
+import com.gig.bankaccountrestapi.model.Transaction;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -28,6 +29,20 @@ public interface AccountControllerInterface {
             @RequestBody Account newAccount
     ) throws Exception;
 
+
+    @PutMapping("/make_transaction/{accountId}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Withdraw transaction created successfully",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Account.class))}),
+            @ApiResponse(responseCode = "400", description = "Wrong format",
+                    content = @Content),
+            @ApiResponse(responseCode = "401", description = "Field validation failed",
+                    content = @Content)})
+    @Operation(summary = "Withdraw transaction")
+        ResponseEntity<Object> withdrawMoneyTransaction(@PathVariable Long accountId, @RequestBody Transaction transaction) throws Exception;
+
+
     @GetMapping
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Get all accounts",
@@ -40,7 +55,7 @@ public interface AccountControllerInterface {
     @Operation(summary = "Find all account")
     public ResponseEntity<List<Account>> getAll() throws Exception;
 
-    @GetMapping("/{id}")
+    @GetMapping("/{accountId}")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Find an account by id",
                     content = {@Content(mediaType = "application/json",
