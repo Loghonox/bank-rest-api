@@ -7,3 +7,7 @@ https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalizat
 
 
 ![data_model](https://github.com/Loghonox/bank-rest-api/assets/8063013/073490e1-5e15-48df-8b15-d54bcc41df67)
+
+
+# Run docker image
+ docker-compose up -d
